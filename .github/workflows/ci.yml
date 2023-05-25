@@ -3,8 +3,6 @@ name: Quickstarts tests
 on: 
   push:
   pull_request:
-  schedule:
-    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -13,11 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        if: ${{ github.event_name != 'schedule' }}
-      - uses: actions/checkout@v2
-        if: ${{ github.event_name == 'schedule' }}
-        with:
-          ref: 'main'
       - uses: actions/setup-java@v1
         with:
           java-version: 11
